@@ -5,17 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-def create_app(config_file='config.py'):
+
     
-    app = Flask(__name__)
-    app.config.from_pyfile(config_file)
-    db = SQLAlchemy(app)
+app = Flask(__name__)
+app.config.from_pyfile(config_file)
+db = SQLAlchemy(app)
 
-    db.init_app(app)
-    return app
+import models
 
 
-import models 
 
 @app.route("/")
 @app.route("/index")
@@ -26,7 +24,7 @@ def index():
 def expanded(id):
     expanded = models.Wildfire.query.get_or_404(id)
     return render_template('expanded.html', expanded=expanded)
-   
+
 @app.route ("/search_result", methods=["GET", "POST"])
 def search_result():
     name = request.form.get("name").capitalize()
@@ -43,7 +41,7 @@ def search_result():
     list8 = []
     list9 = []
     results = models.Wildfire.search_results() 
- 
+
     for i in results:
         if (name in i.name) and (archive_year in i.archive_year) and (counties in i.counties):
             list1.append(i.name)
