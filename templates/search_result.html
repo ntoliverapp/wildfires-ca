@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+<br><br><br><br>
+<h1>Search Result for Wildfires</h1>
+{% if range(count) %}
+<table>
+    
+    <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>County</th>
+        <th>Admin Unit</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>Extinguished Date</th>
+
+    </tr>
+{% for i in range(count) %}
+<tr>
+    <td><h5> {{result1[i]}}</h5></td>
+    <td>{{result2[i]}}</td>
+    <td>{{result3[i]}} County</td>
+    <td>{{result4[i]}}</td>
+    <td>{{result5[i]}}</td>
+    <td>{{result6[i]}}</td>
+    <td>{{result7[i]}}</td>
+    <td><img src={{result8[i]}} height=50% width=50%> </td>
+
+
+</tr>
+{% endfor %}
+</table>
+{% else %} 
+<br><br>
+<h1>No results.</h1>
+{% endif %}
+<button > <a href="{{ url_for('index') }}">back</a></button>
+
+{% endblock %}

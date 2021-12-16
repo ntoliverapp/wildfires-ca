@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br><br><br><br>
+
+<div class="row">
+    <div class="col-lg-3">
+      <div class="my-4">
+        <form action="{{ url_for('search_result') }}" method="POST">
+            <div class="form-group">
+                <input type = 'text' name = 'name' placeholder="Enter name of wildfire"><br><br>
+            </div>
+            <div class="form-group">
+                <input type = 'text' name = 'archive_year' placeholder="Enter year of wildfire"><br><br>
+            </div>
+            <div class="form-group">
+                <input type = 'text' name = 'counties' placeholder="Enter county of wildfire"><br><br>
+            </div>
+            <input type = 'submit' placeholder = 'submit'>
+          </form>      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="row my-5 card-wrapper">
+        {% if wildfires %}
+        {% for w in wildfires %}
+          <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="embed-responsive embed-responsive-10by9">
+                  <a href="#">
+                    <img src="{{ w.image_url }}"  alt="Photo" height=300px >
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-title"><a href="{{ url_for('expanded', id=w.id) }}" >
+                    {{w.name}}
+                  </a></h2>
+                  <h2>{{w.archive_year}}</h2>
+                  <h4>{{w.counties}} County</h4>
+
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">
+                    source: kaggle.com
+                  </small>
+                </div>
+              </div>
+          </div>
+        {% endfor %}
+        {% else %}
+        <h1 class="offset-lg-3">No items to show.</h1>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
