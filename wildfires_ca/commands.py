@@ -1,5 +1,7 @@
-from app import db
-from models import Wildfire
+# from app import db
+# from models import Wildfire
+from .extensions import db
+from .models import Wildfire
 
 def init_wildfire_db(filename):
     db.create_all()

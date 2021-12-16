@@ -1,5 +1,6 @@
 from sqlalchemy import desc, asc
-from app import db
+# from app import db
+from .extensions import db 
 
 class Wildfire(db.Model):
     id = db.Column(db.Integer, primary_key=True)

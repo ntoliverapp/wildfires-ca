@@ -1,30 +1,32 @@
-import os
+from flask import Blueprint, Flask, render_template, request
+# from flask_sqlalchemy import SQLAlchemy
+from wildfires_ca.extensions import db
+from wildfires_ca.models import Wildfire
 
-from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+main = Blueprint('main',__name__)
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+# basedir = os.path.abspath(os.path.dirname(__file__))
     
-app = Flask(__name__)
-config_file='config.py'
-app.config.from_pyfile(config_file)
+# app = Flask(__name__)
+# config_file='config.py'
+# app.config.from_pyfile(config_file)
 
 
-db = SQLAlchemy(app)
-import models
+# db = SQLAlchemy(app)
+# import models
 
 
-@app.route("/")
+@main.route("/")
 @app.route("/index")
 def index():
     return render_template("index.html")
 
-@app.route("/index/<int:id>")
+@main.route("/index/<int:id>")
 def expanded(id):
     expanded = models.Wildfire.query.get_or_404(id)
     return render_template('expanded.html', expanded=expanded)
 
-@app.route ("/search_result", methods=["GET", "POST"])
+@main.route ("/search_result", methods=["GET", "POST"])
 def search_result():
     name = request.form.get("name").capitalize()
     archive_year = request.form.get("archive_year")
@@ -54,14 +56,14 @@ def search_result():
 
     return render_template("search_result.html", count=len(list1), result1=list1, result2 = list2, result3=list3, result4=list4, result5=list5, result6=list6, result7=list7, result8=list8)
 
-@app.route("/database", methods=["POST", "GET"])
+@main.route("/database", methods=["POST", "GET"])
 def database():
     return render_template("database.html", wildfires=models.Wildfire.display(30))
 
-@app.route("/info", methods=["POST", "GET"])
+@main.route("/info", methods=["POST", "GET"])
 def info():
     return render_template("info.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
     
