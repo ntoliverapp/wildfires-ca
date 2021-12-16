@@ -5,13 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+def create_app(config_file='config.py'):
+    
+    app = Flask(__name__)
+    app.config.from_pyfile(config_file)
+    db = SQLAlchemy(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tegsiiedbnkatc:fa9debaa984e457d2447e5f2cbcd09bbe209f2968ddec4873eba3631fb5c6eca@ec2-34-233-214-228.compute-1.amazonaws.com:5432/d4pbojqvl6i3tb'
+    db.init_app(app)
+    return app
 
-app.secret_key = 'secret string'
-
-db = SQLAlchemy(app)
 
 import models 
 
