@@ -4,15 +4,14 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-
-
     
 app = Flask(__name__)
+config_file='config.py'
+app.config.from_pyfile(config_file)
+
 
 db = SQLAlchemy(app)
-
 import models
-
 
 
 @app.route("/")
