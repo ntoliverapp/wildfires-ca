@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container" >
             <h1 class="nav-item {{ 'active' if active_page == 'index' else '' }}">
-                <a href="{{ url_for('index') }}" class="nav-link">California Wildfires</a>
+                <a href="{{ url_for('main.index') }}" class="nav-link">California Wildfires</a>
             </h1>
         </div>
       
@@ -20,13 +20,13 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item {{ 'active' if active_page == 'index' else '' }}">
-                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
               </li>
               <li class="nav-item {{ 'active' if active_page == 'database' else '' }}">
-                <a href="{{ url_for('database') }}" class="nav-link">Wildfire DB</a>
+                <a href="{{ url_for('main.database') }}" class="nav-link">Wildfire DB</a>
               </li>
             <li class="nav-item {{ 'active' if active_page == 'info' else '' }}">
-              <a href="{{ url_for('info') }}" class="nav-link">Info</a>
+              <a href="{{ url_for('main.info') }}" class="nav-link">Info</a>
             </li>
             </ul>
           </div>
