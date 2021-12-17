@@ -1,7 +1,7 @@
 
 from flask import Blueprint, Flask, render_template, request
 # from flask_sqlalchemy import SQLAlchemy
-from wildfires_ca.extensions import db
+
 from wildfires_ca.models import Wildfire
 
 main = Blueprint('main',__name__)
@@ -24,7 +24,7 @@ def index():
 
 @main.route("/index/<int:id>")
 def expanded(id):
-    expanded = models.Wildfire.query.get_or_404(id)
+    expanded = Wildfire.query.get_or_404(id)
     return render_template('expanded.html', expanded=expanded)
 
 @main.route ("/search_result", methods=["GET", "POST"])
@@ -42,7 +42,7 @@ def search_result():
     list7 = []
     list8 = []
     list9 = []
-    results = models.Wildfire.search_results() 
+    results = Wildfire.search_results() 
 
     for i in results:
         if (name in i.name) and (archive_year in i.archive_year) and (counties in i.counties):
@@ -59,7 +59,7 @@ def search_result():
 
 @main.route("/database", methods=["POST", "GET"])
 def database():
-    return render_template("database.html", wildfires=models.Wildfire.display(30))
+    return render_template("database.html", wildfires=Wildfire.display(30))
 
 @main.route("/info", methods=["POST", "GET"])
 def info():

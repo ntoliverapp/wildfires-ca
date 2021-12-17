@@ -1,7 +1,8 @@
 venv/
+
 .env
 
 *.pyc
 __pycache__/
 
-settings.py
+# settings.py
