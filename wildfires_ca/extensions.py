@@ -1,3 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
+import wildfires_ca
 
-db = SQLAlchemy()
+from wildfires_ca.routes import main 
+
+db = SQLAlchemy(wildfires_ca)

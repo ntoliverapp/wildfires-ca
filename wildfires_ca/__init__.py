@@ -1,7 +1,5 @@
 from flask import Flask 
-from .commands import create_tables
 from .extensions import db
-from .models import Wildfire
 from .routes.main import main
 
 def create_app(config_file='settings.py'):

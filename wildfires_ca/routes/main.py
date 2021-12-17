@@ -1,3 +1,4 @@
+
 from flask import Blueprint, Flask, render_template, request
 # from flask_sqlalchemy import SQLAlchemy
 from wildfires_ca.extensions import db
@@ -17,7 +18,7 @@ main = Blueprint('main',__name__)
 
 
 @main.route("/")
-@app.route("/index")
+@main.route("/index")
 def index():
     return render_template("index.html")
 
