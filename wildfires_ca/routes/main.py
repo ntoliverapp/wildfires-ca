@@ -59,7 +59,7 @@ def search_result():
 
 @main.route("/database", methods=["POST", "GET"])
 def database():
-    return render_template("database.html", wildfires=Wildfire.display(100))
+    return render_template("database.html", wildfires=Wildfire.display(30))
 
 @main.route("/info", methods=["POST", "GET"])
 def info():
