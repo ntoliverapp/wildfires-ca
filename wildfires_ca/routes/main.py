@@ -1,5 +1,5 @@
 
-from flask import Blueprint, Flask, render_template, request
+from flask import Blueprint, render_template, request
 # from flask_sqlalchemy import SQLAlchemy
 
 from wildfires_ca.models import Wildfire
